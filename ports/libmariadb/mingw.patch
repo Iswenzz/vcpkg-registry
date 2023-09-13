@@ -1,0 +1,38 @@
+diff --git a/libmariadb/ma_client_plugin.c.in b/libmariadb/ma_client_plugin.c.in
+index 6e0433b..f73ca19 100644
+--- a/libmariadb/ma_client_plugin.c.in
++++ b/libmariadb/ma_client_plugin.c.in
+@@ -351,7 +351,7 @@ mysql_client_register_plugin(MYSQL *mysql,
+ 
+ /* see <mysql/client_plugin.h> for a full description */
+ struct st_mysql_client_plugin * STDCALL
+-mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
++mysql_load_plugin_v(struct st_mysql *mysql, const char *name, int type,
+                     int argc, va_list args)
+ {
+   const char *errmsg;
+@@ -467,8 +467,9 @@ err:
+ 
+ 
+ /* see <mysql/client_plugin.h> for a full description */
+-struct st_mysql_client_plugin * STDCALL
+-mysql_load_plugin(MYSQL *mysql, const char *name, int type, int argc, ...)
++struct st_mysql_client_plugin *
++mysql_load_plugin(struct st_mysql *mysql, const char *name, int type,
++                  int argc, ...)
+ {
+   struct st_mysql_client_plugin *p;
+   va_list args;
+diff --git a/libmariadb/ma_net.c b/libmariadb/ma_net.c
+index 3530109..78dd797 100644
+--- a/libmariadb/ma_net.c
++++ b/libmariadb/ma_net.c
+@@ -341,7 +341,7 @@ int ma_net_real_write(NET *net, const char *packet, size_t len)
+       char errmsg[100];
+ 
+       net->error=2;				/* Close socket */
+-      strerror_r(save_errno, errmsg, 100);
++      strerror_s(save_errno, errmsg, 100);
+       net->pvio->set_error(net->pvio->mysql, CR_ERR_NET_WRITE, SQLSTATE_UNKNOWN, 0,
+                            errmsg, save_errno);
+       net->reading_or_writing=0;
