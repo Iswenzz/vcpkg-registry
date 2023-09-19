@@ -1,0 +1,4 @@
+speex provides CMake targets:
+
+    find_package(speex CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE speex::speex)
