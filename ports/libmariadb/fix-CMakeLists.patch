@@ -1,0 +1,112 @@
+diff --git a/libmariadb/CMakeLists.txt b/libmariadb/CMakeLists.txt
+index 7faf827..6f2bc69 100644
+--- a/libmariadb/CMakeLists.txt
++++ b/libmariadb/CMakeLists.txt
+@@ -339,7 +339,7 @@ IF(WIN32)
+     win32_errmsg.h)
+ ELSE()
+   IF(ICONV_INCLUDE_DIR)
+-     INCLUDE_DIRECTORIES(BEFORE ${ICONV_INCLUDE_DIR}) 
++     INCLUDE_DIRECTORIES(BEFORE ${ICONV_INCLUDE_DIR})
+   ENDIF()
+   IF(NOT CMAKE_SYSTEM_NAME MATCHES AIX)
+     ADD_DEFINITIONS(-DLIBICONV_PLUG)
+@@ -384,7 +384,7 @@ ENDIF()
+ 
+ 
+ IF(CMAKE_VERSION VERSION_GREATER 2.8.7)
+-  # CREATE OBJECT LIBRARY 
++  # CREATE OBJECT LIBRARY
+   ADD_LIBRARY(mariadb_obj OBJECT ${LIBMARIADB_SOURCES})
+   IF(UNIX)
+     SET_TARGET_PROPERTIES(mariadb_obj PROPERTIES COMPILE_FLAGS "${CMAKE_SHARED_LIBRARY_C_FLAGS}")
+@@ -417,13 +417,13 @@ ADD_LIBRARY(mariadbclient STATIC  ${MARIADB_OBJECTS} ${EMPTY_FILE})
+ TARGET_LINK_LIBRARIES(mariadbclient ${SYSTEM_LIBS})
+ 
+ IF(UNIX)
+-  ADD_LIBRARY(libmariadb SHARED ${libmariadb_RC} ${MARIADB_OBJECTS} ${EMPTY_FILE})
+-  SET_TARGET_PROPERTIES(libmariadb PROPERTIES COMPILE_FLAGS "${CMAKE_SHARED_LIBRARY_C_FLAGS}")
++  ADD_LIBRARY(libmariadb ${libmariadb_RC} ${MARIADB_OBJECTS} ${EMPTY_FILE})
+ ELSE()
+-  ADD_LIBRARY(libmariadb SHARED ${libmariadb_RC} ${MARIADB_OBJECTS} mariadbclient.def)
++  ADD_LIBRARY(libmariadb ${libmariadb_RC} ${MARIADB_OBJECTS} mariadbclient.def)
+   SET_TARGET_PROPERTIES(libmariadb PROPERTIES LINKER_LANGUAGE C)
+ ENDIF()
+ 
++TARGET_INCLUDE_DIRECTORIES(libmariadb PUBLIC $<INSTALL_INTERFACE:include/mysql>)
+ TARGET_LINK_LIBRARIES(libmariadb LINK_PRIVATE ${SYSTEM_LIBS})
+ 
+ SIGN_TARGET(libmariadb)
+@@ -460,7 +460,9 @@ IF(WITH_MYSQLCOMPAT)
+   ENDIF()
+ ENDIF()
+ 
++IF(0)
+ create_symlink(libmariadb${CMAKE_STATIC_LIBRARY_SUFFIX} mariadbclient ${INSTALL_LIBDIR})
++ENDIF()
+ 
+ SET_TARGET_PROPERTIES(libmariadb PROPERTIES VERSION
+  ${CPACK_PACKAGE_VERSION_MAJOR}
+@@ -470,13 +472,50 @@ IF(NOT WIN32)
+   SET_TARGET_PROPERTIES(mariadbclient PROPERTIES OUTPUT_NAME "${LIBMARIADB_STATIC_NAME}")
+ ENDIF()
+ 
++IF(VCPKG_MARIADBCLIENT)
+ INSTALL(TARGETS mariadbclient
+           COMPONENT Development
+-          DESTINATION ${INSTALL_LIBDIR})
+-IF(WIN32)
++          EXPORT libmariadb-targets
++          LIBRARY DESTINATION lib)
++ELSE()
++  set_target_properties(mariadbclient PROPERTIES EXCLUDE_FROM_ALL 1)
++ENDIF()
++
++IF(1)
+ INSTALL(TARGETS libmariadb
+         COMPONENT SharedLibraries
+-        DESTINATION ${INSTALL_LIBDIR})
++        EXPORT libmariadb-targets
++        RUNTIME DESTINATION bin
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
++
++file(WRITE "cmake/libmariadb-config.cmake.in"
++[[@PACKAGE_INIT@
++include(CMakeFindDependencyMacro)
++find_dependency(ZLIB)
++if("@WITH_SSL@" STREQUAL "OPENSSL")
++    find_dependency(OpenSSL)
++endif()
++include("${CMAKE_CURRENT_LIST_DIR}/libmariadb-targets.cmake")
++]])
++include(CMakePackageConfigHelpers)
++
++export(EXPORT libmariadb-targets
++    FILE "${CMAKE_CURRENT_BINARY_DIR}/libmariadb-targets.cmake"
++    NAMESPACE libmariadb::)
++
++configure_package_config_file(cmake/libmariadb-config.cmake.in
++  "${CMAKE_CURRENT_BINARY_DIR}/libmariadb-config.cmake"
++  INSTALL_DESTINATION lib/cmake/libmariadb)
++
++install(EXPORT libmariadb-targets
++    FILE libmariadb-targets.cmake
++    NAMESPACE libmariadb::
++    DESTINATION lib/cmake/libmariadb)
++
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libmariadb-config.cmake"
++    DESTINATION lib/cmake/libmariadb)
++
+ ELSE()
+ # in cmake 3.12+ we can use
+ #INSTALL(TARGETS libmariadb LIBRARY DESTINATION ${INSTALL_LIBDIR}
+@@ -488,7 +527,7 @@ INSTALL(TARGETS libmariadb LIBRARY DESTINATION ${INSTALL_LIBDIR}
+         COMPONENT Development NAMELINK_ONLY)
+ ENDIF()
+ 
+-IF(MSVC)
++IF(0)
+    # On Windows, install PDB
+    INSTALL(FILES $<TARGET_PDB_FILE:libmariadb> DESTINATION "${INSTALL_LIBDIR}"
+            CONFIGURATIONS Debug RelWithDebInfo
