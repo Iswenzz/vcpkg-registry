@@ -3,7 +3,7 @@ vcpkg_from_github(
 	REPO iswenzz/CGSC
 	REF 3ee0b374c260599c0366db3dbfab2e5925ae3e3a
 	SHA512 0013502e5f1b84868a086f227701e9531ba6eec1ee06d857093e2b317b7986164807d6ca48ba9aa7104ef70fa9e69bf1a1073096154dbdeba1dbec6897b8111c
-	HEAD_REF develop
+	HEAD_REF master
 )
 
 vcpkg_cmake_configure(SOURCE_PATH "${SOURCE_PATH}")
