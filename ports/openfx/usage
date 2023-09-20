@@ -1,0 +1,4 @@
+openfx provides CMake targets:
+
+    find_package(OpenFX CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE OpenFX::OfxHost OpenFX::OfxSupport)
