@@ -3,19 +3,12 @@
 	"version": "1.2.3",
 	"description": "Call of Duty 4X source extension that adds new utilities to extend the server and the creation of new plugins.",
   	"homepage": "https://github.com/Iswenzz/CGSC",
-	"features": {
-		"tests": {
-			"description": "Build tests",
-			"dependencies": ["greatest"]
-		}
-	},
 	"dependencies": [
 		{ "name": "vcpkg-cmake", "host": true },
 		{ "name": "vcpkg-cmake-config", "host": true },
 		"libuv"
 	],
 	"overrides": [
-		{ "name": "libuv", "version": "1.46.0" },
-		{ "name": "greatest", "version": "1.5.0" }
+		{ "name": "libuv", "version": "1.46.0" }
 	]
 }
