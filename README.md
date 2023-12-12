@@ -25,6 +25,16 @@ Configure your **vcpkg-configuration.json** file.
 }
 ```
 
-## Contributors:
+# Test ports
+	vcpkg install cod4dm1 --overlay-ports=ports/cod4dm1 --editable --triplet=x64-windows
+
+# Add ports
+	git add ports/cod4dm1
+	git commit -m "Port: CoD4DM1"
+	git rev-parse HEAD:ports/cod4dm1
+	git add versions
+	git commit --amend --no-edit
+
+## Contributors
 ***Note:*** If you would like to contribute to this repository, feel free to send a pull request, and I will review your code.
 Also feel free to post about any problems that may arise in the issues section of the repository.
