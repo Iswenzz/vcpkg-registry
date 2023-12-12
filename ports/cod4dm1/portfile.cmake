@@ -6,9 +6,6 @@ vcpkg_from_github(
 	HEAD_REF master
 )
 
-set(VCPKG_POLICY_DLLS_WITHOUT_EXPORTS enabled)
-set(VCPKG_POLICY_DLLS_WITHOUT_LIBS enabled)
-
 vcpkg_cmake_configure(SOURCE_PATH "${SOURCE_PATH}")
 vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(CONFIG_PATH "lib/cmake/CoD4DM1")
