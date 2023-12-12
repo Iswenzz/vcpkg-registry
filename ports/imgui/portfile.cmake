@@ -51,6 +51,26 @@ if("libigl-imgui" IN_LIST FEATURES)
 	file(INSTALL "${IMGUI_FONTS_DROID_SANS_H}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
 endif()
 
+if("club" IN_LIST FEATURES)
+	vcpkg_download_distfile(
+		IMGUI_CLUB_MEMORY_EDITOR_H
+		URLS https://raw.githubusercontent.com/ocornut/imgui_club/ea49dd3c6803088d50b496e3fe981501543b7cbc/imgui_memory_editor/imgui_memory_editor.h
+		FILENAME "imgui_memory_editor.h"
+		SHA512 61bf32f9c119096d9224bd5cbf3aa268e2dc0d16e3718815fe1ed8b1e5ec648b3a39bb290261d5395527e0de932a1dcf2fcab4d21aade690b033059c008d8a68
+	)
+	file(INSTALL "${IMGUI_CLUB_MEMORY_EDITOR_H}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
+endif()
+
+if("markdown" IN_LIST FEATURES)
+	vcpkg_download_distfile(
+		IMGUI_MARKDOWN_H
+		URLS https://raw.githubusercontent.com/juliettef/imgui_markdown/61a181bdb83f450f852f7cf5d1282d8cda1c0f57/imgui_markdown.h
+		FILENAME "imgui_markdown.h"
+		SHA512 66fc1f98d55852cd06d92934fa3fc926924608f24c773df931e380e98435c0c0b3565e06f28ca5fd0a2e509d05c9e2ede3b762f67af7bdaf5b73f09271750192
+	)
+	file(INSTALL "${IMGUI_MARKDOWN_H}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
+endif()
+
 vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
 
 vcpkg_cmake_configure(
