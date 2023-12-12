@@ -82,7 +82,7 @@ vcpkg_cmake_configure(
 )
 vcpkg_cmake_install()
 
-vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "//#define IMGUI_API __declspec( dllimport )" "#define IMGUI_API __declspec( dllimport )")
+vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllimport )")
 if("freetype" IN_LIST FEATURES)
 	vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "//#define IMGUI_ENABLE_FREETYPE" "#define IMGUI_ENABLE_FREETYPE")
 endif()
