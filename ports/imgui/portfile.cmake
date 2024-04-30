@@ -71,7 +71,9 @@ if("markdown" IN_LIST FEATURES)
 	file(INSTALL "${IMGUI_MARKDOWN_H}" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
 endif()
 
-vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+	vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
+endif()
 
 vcpkg_cmake_configure(
 	SOURCE_PATH "${SOURCE_PATH}"
@@ -82,7 +84,10 @@ vcpkg_cmake_configure(
 )
 vcpkg_cmake_install()
 
-vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllimport )")
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+	vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllimport )")
+endif()
+
 if("freetype" IN_LIST FEATURES)
 	vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "//#define IMGUI_ENABLE_FREETYPE" "#define IMGUI_ENABLE_FREETYPE")
 endif()
