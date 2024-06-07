@@ -1,6 +1,6 @@
 {
     "name": "imgui",
-    "version": "1.89.9",
+    "version": "1.90.7",
     "description": "Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.",
     "homepage": "https://github.com/ocornut/imgui",
     "license": "MIT",
@@ -20,6 +20,10 @@
             "dependencies": [
                 "allegro5"
             ]
+        },
+        "android-binding": {
+            "description": "Make available Android native app support",
+            "supports": "android"
         },
         "docking-experimental": {
             "description": "Build with docking support"
@@ -103,6 +107,14 @@
                 "sdl2"
             ]
         },
+        "test-engine": {
+            "description": "Build test engine",
+            "supports": "!uwp",
+            "license": null,
+            "dependencies": [
+                "stb"
+            ]
+        },
         "vulkan-binding": {
             "description": "Make available Vulkan binding",
             "dependencies": [
@@ -116,11 +128,11 @@
             "description": "Make available Win32 binding",
             "supports": "windows & !uwp"
         },
-		"markdown": {
-			"description": "Markdown for Dear ImGui"
-		},
-		"club": {
-			"description": "Nice things to use along dear imgui"
-		}
+        "markdown": {
+            "description": "Markdown for Dear ImGui"
+        },
+        "club": {
+            "description": "Nice things to use along dear imgui"
+        }
     }
 }
