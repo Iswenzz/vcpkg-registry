@@ -77,6 +77,7 @@ endif()
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
 	vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
+endif()
 
 if("test-engine" IN_LIST FEATURES)
 	vcpkg_from_github(
