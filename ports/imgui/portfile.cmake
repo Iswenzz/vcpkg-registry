@@ -11,7 +11,7 @@ else()
 		OUT_SOURCE_PATH SOURCE_PATH
 		REPO ocornut/imgui
 		REF "v${VERSION}"
-		SHA512 8cdec45c8b58b3768a2216af2a1cba3d0e772ac48420b57057a4a8eda5766c121b4a8457a81b5896defe00b822c40d6aac6ee2b31f4133f2b9a02b231b1529d2
+		SHA512 3f5cb5045227d24209edebdfc1c0b64eacf0779fe0bd25fc4594d5d626e8b11f97bd18d3bf8f89b287f0ed421995bf191b170217758d9efb8fec821ada4ba6b9
 		HEAD_REF master
 	)
 endif()
@@ -76,7 +76,7 @@ if("markdown" IN_LIST FEATURES)
 endif()
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-	vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllexport )")
+	vcpkg_replace_string("${SOURCE_PATH}/imconfig.h" "//#define IMGUI_API __declspec(dllexport)" "#define IMGUI_API __declspec(dllexport)")
 endif()
 
 if("test-engine" IN_LIST FEATURES)
@@ -105,7 +105,7 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-	vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec( dllexport )" "#define IMGUI_API __declspec( dllimport )")
+	vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/imconfig.h" "#define IMGUI_API __declspec(dllexport)" "#define IMGUI_API __declspec(dllimport)")
 endif()
 
 if("freetype" IN_LIST FEATURES)
