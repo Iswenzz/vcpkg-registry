@@ -34,6 +34,7 @@ Configure your **vcpkg-configuration.json** file.
 	git rev-parse HEAD:ports/cod4dm1
 	git add versions
 	git commit --amend --no-edit
+	update baseline.json
 
 ## Contributors
 ***Note:*** If you would like to contribute to this repository, feel free to send a pull request, and I will review your code.
