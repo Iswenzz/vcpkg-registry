@@ -1,0 +1,13 @@
+diff --git a/include/conncpp/buildconf.hpp b/include/conncpp/buildconf.hpp
+index c7509db..082ff61 100644
+--- a/include/conncpp/buildconf.hpp
++++ b/include/conncpp/buildconf.hpp
+@@ -20,6 +20,8 @@
+ #ifndef _BUILDCONF_H_
+ #define _BUILDCONF_H_
+
++#include <cstdint>
++
+ #if defined(_WIN32) && !defined(__MINGW32__) && !defined(__MINGW64__)
+ # ifdef MARIADB_STATIC_LINK
+ #  ifdef MARIADB_EXTERN
