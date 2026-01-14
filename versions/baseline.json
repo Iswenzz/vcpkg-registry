@@ -1,7 +1,6 @@
 {
 	"default": {
 		"cef": { "baseline": "142.0.17", "port-version": 0 },
-		"cgsc": { "baseline": "1.2.4", "port-version": 0 },
 		"cod4dm1": { "baseline": "1.0.7", "port-version": 0 },
 		"imgui": { "baseline": "1.92.3", "port-version": 1 },
 		"implot": { "baseline": "0.16", "port-version": 1 },
