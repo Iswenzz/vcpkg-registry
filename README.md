@@ -1,6 +1,4 @@
 # vcpkg-registry
-[![CodeFactor](https://img.shields.io/codefactor/grade/github/Iswenzz/vcpkg-registry?label=codefactor&logo=codefactor)](https://www.codefactor.io/repository/github/iswenzz/vcpkg-registry)
-[![License](https://img.shields.io/github/license/Iswenzz/vcpkg-registry?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/vcpkg-registry/blob/master/LICENSE)
 
 A repository for managing vcpkg ports of my libraries as well as dependencies not yet included in vcpkg. It provides a convenient way to distribute and use these ports within your development environment when working with the [vcpkg](https://github.com/microsoft/vcpkg) package manager.
 
