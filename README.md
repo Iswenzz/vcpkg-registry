@@ -30,9 +30,10 @@ Configure your **vcpkg-configuration.json** file.
 	git add ports/cod4dm1
 	git commit -m "Port: CoD4DM1"
 	git rev-parse HEAD:ports/cod4dm1
+	update versions
 	git add versions
-	git commit --amend --no-edit
 	update baseline.json
+	git commit --amend --no-edit
 
 ## Contributors
 ***Note:*** If you would like to contribute to this repository, feel free to send a pull request, and I will review your code.
