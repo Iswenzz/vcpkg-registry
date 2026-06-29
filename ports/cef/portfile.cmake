@@ -1,14 +1,14 @@
 if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
 	vcpkg_download_distfile(ARCHIVE
-		URLS https://cef-builds.spotifycdn.com/cef_binary_142.0.17%2Bg60aac24%2Bchromium-142.0.7444.176_windows32.tar.bz2
-		FILENAME "cef.x86.tar.bz2"
-		SHA512 36b4105c9734aed4d15eae2b9da37f7196376c5f4dd91f1ae8b09b8204f16d44f4200e5f210e193b81223cc49a286eb35e82fd444f817a7edb1465a6b6088b72
+		URLS https://iswenzz.com/static/vcpkg/cef/cef_binary_149.0.6%2Bg0d0eeb6%2Bchromium-149.0.7827.201_windows32.tar.bz2
+		FILENAME "cef_windows32.tar.bz2"
+		SHA512 07eed6bf944668199595d9072e12abff28dac1e230886d0b2d6bbf009095e55e2231bd45b2fc605422b0d25195a4bc6c7bd30192c1dd7a0fe2e9ad24cc409983
 	)
 elseif(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64")
 	vcpkg_download_distfile(ARCHIVE
-		URLS https://cef-builds.spotifycdn.com/cef_binary_142.0.17%2Bg60aac24%2Bchromium-142.0.7444.176_windows64.tar.bz2
-		FILENAME "cef.x64.tar.bz2"
-		SHA512 c9080ae1f69472a55e96736b58a002404fe2973327b2b580484dd5002c26408f1a0c5abdc907eb93e277b8d995285e3f87b94586ff916d218e39ea03f8e6c66f
+		URLS https://cef-builds.spotifycdn.com/cef_binary_149.0.6%2Bg0d0eeb6%2Bchromium-149.0.7827.201_windows64.tar.bz2
+		FILENAME "cef_windows64.tar.bz2"
+		SHA512 66200e0050721e2d5df68fcd737daa48080ae616cc063d0cc452d0059ae9e355b5c50182fe532120ba19d92a91559db1a8b68f7ae51d5e281f189474bdf8da52
 	)
 else()
 	message(FATAL_ERROR "CEF does not support architecture: ${VCPKG_TARGET_ARCHITECTURE}")
